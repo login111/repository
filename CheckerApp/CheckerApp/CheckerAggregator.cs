@@ -12,34 +12,33 @@ namespace CheckerApp
     {
 
         ArrayList checkList;
+        ArrayList taskList;
 
         public CheckerAggregator() { }
         public CheckerAggregator(ArrayList checkList_)
         {
             this.checkList = checkList_;
+            taskList = new ArrayList();
         }
 
 
         public void Run()
         {
-            while (true)
-            {
                 foreach (ICheck check in checkList)
                 {
                     Task task = new Task<CheckResult>(new Func<CheckResult>(check.Check));
+                    taskList.Add(task);
                     task.Start();
                 }
 
+                Task[] taskArr = (Task[]) taskList.ToArray(typeof(Task));
+                Task.WaitAll(taskArr);
 
-                for (int i = 15; i >= 0; i--)
+                foreach (Task<CheckResult> task in taskList)
                 {
-                    Console.WriteLine(" :" + i);
-                    Thread.Sleep(1000);
+                    CheckResult res = task.Result;
+                    Console.WriteLine("Status : " + res.code + " Message : " + res.message);                
                 }
-            }
-
-
-
         }
 
 

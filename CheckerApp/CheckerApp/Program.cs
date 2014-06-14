@@ -10,11 +10,14 @@ namespace CheckerApp
     {
         static void Main(string[] args)
         {
+
             ArrayList checkList = new ArrayList();
             checkList.Add(new DBCheck());
 
             CheckerAggregator checkAggr = new CheckerAggregator(checkList);
             checkAggr.Run();
+
+            Console.ReadKey();
         }
     }
 }

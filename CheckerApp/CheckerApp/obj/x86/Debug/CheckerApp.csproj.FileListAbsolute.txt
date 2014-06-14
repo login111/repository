@@ -2,3 +2,8 @@ D:\UNIV\3_KURS_6_SEM\Лесько\CHECKER\CheckerApp\CheckerApp\bin\Debug\Checke
 D:\UNIV\3_KURS_6_SEM\Лесько\CHECKER\CheckerApp\CheckerApp\bin\Debug\CheckerApp.pdb
 D:\UNIV\3_KURS_6_SEM\Лесько\CHECKER\CheckerApp\CheckerApp\obj\x86\Debug\CheckerApp.exe
 D:\UNIV\3_KURS_6_SEM\Лесько\CHECKER\CheckerApp\CheckerApp\obj\x86\Debug\CheckerApp.pdb
+C:\Users\TComputer\Documents\GitHub\repository\CheckerApp\CheckerApp\obj\x86\Debug\CheckerApp.exe
+C:\Users\TComputer\Documents\GitHub\repository\CheckerApp\CheckerApp\obj\x86\Debug\CheckerApp.pdb
+C:\Users\TComputer\Documents\GitHub\repository\CheckerApp\CheckerApp\bin\Debug\CheckerApp.exe
+C:\Users\TComputer\Documents\GitHub\repository\CheckerApp\CheckerApp\bin\Debug\CheckerApp.pdb
+C:\Users\TComputer\Documents\GitHub\repository\CheckerApp\CheckerApp\obj\x86\Debug\CheckerApp.csprojResolveAssemblyReference.cache
