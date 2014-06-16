@@ -11,15 +11,18 @@ namespace CheckerApp
     {
         private ICheck check;
         private Task<CheckResult> task;
+        private int secToWait;
+
         
-        public CheckerTask(ICheck check_)
+        public CheckerTask(ICheck check_,int sec)
         {
             this.check = check_;
+            this.secToWait = sec;
         }
 
         public void Start()
         {
-            task = new Task<CheckResult>(new Func<CheckResult>(check.Check));
+            task = new Task<CheckResult>(() => check.Check(0));
             task.Start();
         }
 
@@ -28,7 +31,7 @@ namespace CheckerApp
                 if (this.IsCompleted())
                 {
                     task.Dispose();
-                    task = new Task<CheckResult>(new Func<CheckResult>(check.Check));
+                    task = new Task<CheckResult>(() => check.Check(secToWait));
                     task.Start();
                 }
         }

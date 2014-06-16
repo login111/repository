@@ -10,15 +10,16 @@ namespace CheckerApp
     class DBCheck : ICheck
     {
 
-        public CheckResult Check()
+        public CheckResult Check(int delay)
         {
             CheckResult result = new CheckResult();
             result.code = CheckResult.StatusCode.OK;
+            result.checkName = "DataBase Check";
             result.message = "Connected to DB";
 
-            for (int i = 10; i > 0; i--)
+            for (int i = delay; i > 0; i--)
             {
-                Console.WriteLine("DBCheck timer : " + i);
+              //  Console.WriteLine("DBCheck timer : " + i);
                 Thread.Sleep(1000);
             }
 

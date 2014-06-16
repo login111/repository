@@ -46,6 +46,7 @@
     <Compile Include="CheckerAggregator.cs" />
     <Compile Include="CheckerTask.cs" />
     <Compile Include="CheckResult.cs" />
+    <Compile Include="Checks\CertificateCheck.cs" />
     <Compile Include="Checks\DBCheck.cs" />
     <Compile Include="EmailSender.cs" />
     <Compile Include="Checks\ICheck.cs" />

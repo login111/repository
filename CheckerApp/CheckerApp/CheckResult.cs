@@ -14,6 +14,7 @@ namespace CheckerApp
         }
 
             public StatusCode code;
+            public String checkName;
             public String message;
     }
 }

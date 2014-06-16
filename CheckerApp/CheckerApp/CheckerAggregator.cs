@@ -10,36 +10,34 @@ namespace CheckerApp
 {
     class CheckerAggregator
     {
-
-        ArrayList checkList;
-        ArrayList taskList;
+        ArrayList checkTaskList;
 
         public CheckerAggregator() { }
         public CheckerAggregator(ArrayList checkList_)
         {
-            this.checkList = checkList_;
-            taskList = new ArrayList();
+            this.checkTaskList = checkList_;
         }
 
 
         public void Run()
         {
-                foreach (ICheck check in checkList)
+            foreach (CheckerTask task in checkTaskList)
                 {
-                    CheckerTask checkerTask = new CheckerTask(check);
-                    taskList.Add(checkerTask);
-                    checkerTask.Start();
+                    task.Start();
                 }
 
 
                 while (true)
-                {                
-                   foreach (CheckerTask task in taskList)
+                {
+                    foreach (CheckerTask task in checkTaskList)
                     {
                         if (task.IsCompleted())
                         {
                             CheckResult res = task.Result();
-                            Console.WriteLine("Status : " + res.code + " Message : " + res.message);
+                            Console.WriteLine("Check : "+res.checkName + "\n" +
+                                              "Status : " + res.code + "\n"+
+                                              "Message : " + res.message);
+                            Console.WriteLine();
                             task.Restart();
                         }
                     }

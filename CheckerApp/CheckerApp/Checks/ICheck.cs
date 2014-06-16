@@ -7,6 +7,6 @@ namespace CheckerApp
 {
     interface ICheck
     {
-        CheckResult Check();
+        CheckResult Check(int delay);
     }
 }
