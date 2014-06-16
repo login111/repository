@@ -11,11 +11,13 @@ namespace CheckerApp
     class CheckerAggregator
     {
         ArrayList checkTaskList;
+        ISender sender;
 
         public CheckerAggregator() { }
-        public CheckerAggregator(ArrayList checkList_)
+        public CheckerAggregator(ArrayList checkList_,ISender sender_)
         {
             this.checkTaskList = checkList_;
+            this.sender = sender_;
         }
 
 
@@ -34,9 +36,16 @@ namespace CheckerApp
                         if (task.IsCompleted())
                         {
                             CheckResult res = task.Result();
-                            Console.WriteLine("Check : "+res.checkName + "\n" +
-                                              "Status : " + res.code + "\n"+
-                                              "Message : " + res.message);
+                            String msg = "Check : "+res.checkName + "\n" +
+                                         "Status : " + res.code + "\n"+
+                                         "Message : " + res.message;
+                            Console.WriteLine(msg);
+
+                            if (res.code == CheckResult.StatusCode.ERROR)
+                            {
+                                sender.Sending(DateTime.Now.ToString() + " : " + msg);                            
+                            }
+
                             Console.WriteLine();
                             task.Restart();
                         }

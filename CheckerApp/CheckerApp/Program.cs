@@ -12,11 +12,12 @@ namespace CheckerApp
     {
         static void Main(string[] args)
         {
+            ISender emailSender = new EmailSender();
             ArrayList checkList = new ArrayList();
             checkList.Add(new CheckerTask(new DBCheck(),10));
             checkList.Add(new CheckerTask(new CertificateCheck(), 5));
 
-            CheckerAggregator checkAggr = new CheckerAggregator(checkList);
+            CheckerAggregator checkAggr = new CheckerAggregator(checkList,emailSender);
             checkAggr.Run();
         }
     }

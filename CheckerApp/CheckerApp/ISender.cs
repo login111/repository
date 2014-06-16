@@ -7,7 +7,7 @@ namespace CheckerApp
 {
     interface ISender
     {
-        void Sending();
+        void Sending(String msg);
     }
 
 
