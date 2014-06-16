@@ -16,8 +16,13 @@ namespace CheckerApp
             result.code = CheckResult.StatusCode.OK;
             result.message = "Connected to DB";
 
-            
-                SqlConnection connection = new SqlConnection("Data Source=TCOMPUTER;Initial Catalog=testDB;Integrated Security=True");
+            for (int i = 10; i > 0; i--)
+            {
+                Console.WriteLine("DBCheck timer : " + i);
+                Thread.Sleep(1000);
+            }
+
+                SqlConnection connection = new SqlConnection("Data Source=TCOMPUTE;Initial Catalog=testDB;Integrated Security=True");
                 try
                 {
                     connection.Open();
@@ -26,9 +31,10 @@ namespace CheckerApp
                 {
                     result.code = CheckResult.StatusCode.ERROR;
                     result.message = e.Message;
-                }                                 
+                }
 
-            return result;
+                return result;
         }
+
     }
 }

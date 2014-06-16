@@ -26,22 +26,25 @@ namespace CheckerApp
         {
                 foreach (ICheck check in checkList)
                 {
-                    Task task = new Task<CheckResult>(new Func<CheckResult>(check.Check));
-                    taskList.Add(task);
-                    task.Start();
+                    CheckerTask checkerTask = new CheckerTask(check);
+                    taskList.Add(checkerTask);
+                    checkerTask.Start();
                 }
 
-                Task[] taskArr = (Task[]) taskList.ToArray(typeof(Task));
-                Task.WaitAll(taskArr);
 
-                foreach (Task<CheckResult> task in taskList)
-                {
-                    CheckResult res = task.Result;
-                    Console.WriteLine("Status : " + res.code + " Message : " + res.message);                
+                while (true)
+                {                
+                   foreach (CheckerTask task in taskList)
+                    {
+                        if (task.IsCompleted())
+                        {
+                            CheckResult res = task.Result();
+                            Console.WriteLine("Status : " + res.code + " Message : " + res.message);
+                            task.Restart();
+                        }
+                    }
                 }
         }
-
-
 
     }
 }

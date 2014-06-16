@@ -7,8 +7,6 @@ namespace CheckerApp
 {
     interface ISender
     {
-
-
         void Sending();
     }
 
