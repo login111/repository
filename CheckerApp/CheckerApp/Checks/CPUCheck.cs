@@ -29,12 +29,12 @@ namespace CheckerApp.Checks
                 if (prcent > 90)
                 {
                     result.code = CheckResult.StatusCode.ERROR;
-                    result.message = "Warning high usage of CPU ( " + prcent.ToString("0.00") + "% )";
+                    result.message = "Warning, high usage of CPU ( " + prcent.ToString("0.00") + "% )";
                 }
                 else
                 {
                     result.code = CheckResult.StatusCode.OK;
-                    result.message = "CPU is OK (" + prcent.ToString("0.00") + " %) ";
+                    result.message = "CPU usage is OK (" + prcent.ToString("0.00") + " %) ";
                 }
             }
             catch (Exception e)

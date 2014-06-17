@@ -43,7 +43,7 @@ namespace CheckerApp
 
                             if (res.code == CheckResult.StatusCode.ERROR)
                             {
-                                sender.Sending(DateTime.Now.ToString() + " : " + msg);                            
+                                sender.Sending(DateTime.Now.ToString() + "\n" + msg);                            
                             }
 
                             Console.WriteLine();

@@ -37,13 +37,13 @@ namespace CheckerApp.Checks
                 {
                     result.code = CheckResult.StatusCode.ERROR;
                     result.message = "Low RAM warning" + "\n" +
-                                     "Avalible " + memAvalibleMb + " mb of " + memTotalMb + " mb ( " + ratio.ToString("0.00") + "% )";
+                                     "Available " + memAvalibleMb + " mb of " + memTotalMb + " mb ( " + ratio.ToString("0.00") + "% )";
                 }
                 else
                 {
                     result.code = CheckResult.StatusCode.OK;
                     result.message = "RAM is OK" + "\n" +
-                                     "Avalible " + memAvalibleMb + " mb of " + memTotalMb + " mb ( " + ratio.ToString("0.00") + "% )";
+                                     "Available " + memAvalibleMb + " mb of " + memTotalMb + " mb ( " + ratio.ToString("0.00") + "% )";
                 }
 
             }

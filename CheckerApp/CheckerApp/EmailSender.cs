@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net.Mail;
+using System.Net;
 
 namespace CheckerApp
 {
@@ -9,16 +11,21 @@ namespace CheckerApp
     {
         public void Sending(String msg)
         {
-            System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-            message.To.Add("dest@gmail.com");
-            message.Subject = "Ошибка";
-            message.From = new System.Net.Mail.MailAddress("from@gmail.com");
+            String login = "test53421@yandex.ru";
+            String pass = "qwetry123";
+
+            SmtpClient smtp = new SmtpClient("smtp.yandex.ru", 25);
+            smtp.Credentials = new NetworkCredential(login, pass);
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(login);
+            message.To.Add(new MailAddress(login/*sergey@testor.ru*/));
+            message.Subject = "Сhecker ERROR from "+System.Environment.UserName;
             message.Body = msg;
-            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
 
             try
             {
                 smtp.Send(message);
+                Console.WriteLine("EMail Successfully Sent");
             }
             catch (Exception e)
             {
