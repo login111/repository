@@ -15,7 +15,7 @@ namespace CheckerApp
             CheckResult result = new CheckResult();
             result.code = CheckResult.StatusCode.OK;
             result.checkName = "DataBase Check";
-            result.message = "Connected to DB";
+            result.message = "";
 
             for (int i = delay; i > 0; i--)
             {

@@ -18,34 +18,44 @@ namespace CheckerApp.Checks
             result.checkName = "Certificate Check";
             result.message = "";
 
-            Random rand = new Random();
-            StoreName storeName = StoreName.Root;
-
-            X509Store store = new X509Store(storeName, StoreLocation.CurrentUser);
-            store.Open(OpenFlags.ReadOnly); 
-            X509Certificate2Collection certificates = store.Certificates;
-            if (certificates.Count > 0)
+            try
             {
-                X509Certificate2 randCertificate = certificates[rand.Next(certificates.Count)];
-                DateTime expiredDate = DateTime.Parse(randCertificate.GetExpirationDateString());
 
-                if (expiredDate >= DateTime.Now)
+                Random rand = new Random();
+                StoreName storeName = StoreName.Root;
+
+                X509Store store = new X509Store(storeName, StoreLocation.CurrentUser);
+                store.Open(OpenFlags.ReadOnly);
+                X509Certificate2Collection certificates = store.Certificates;
+                if (certificates.Count > 0)
                 {
-                    result.code = CheckResult.StatusCode.OK;
-                    result.message = "Certificate " + randCertificate.FriendlyName + " is not expired"+"\n"
-                                     +"ExpirationDate : "+expiredDate.ToString() ;
+                    X509Certificate2 randCertificate = certificates[rand.Next(certificates.Count)];
+                    DateTime expiredDate = DateTime.Parse(randCertificate.GetExpirationDateString());
+
+                    if (expiredDate >= DateTime.Now)
+                    {
+                        result.code = CheckResult.StatusCode.OK;
+                        result.message = "Certificate " + randCertificate.FriendlyName + " is not expired" + "\n"
+                                         + "ExpirationDate : " + expiredDate.ToString();
+                    }
+                    else
+                    {
+                        result.code = CheckResult.StatusCode.ERROR;
+                        result.message = "Certificate " + randCertificate.FriendlyName + " is expired" + "\n"
+                                         + "ExpirationDate : " + expiredDate.ToString();
+                    }
                 }
                 else
                 {
-                    result.code = CheckResult.StatusCode.ERROR;
-                    result.message = "Certificate " + randCertificate.FriendlyName + " is expired" + "\n"
-                                     + "ExpirationDate : " + expiredDate.ToString();
+                    result.code = CheckResult.StatusCode.OK;
+                    result.message = "No certificates found in " + storeName.ToString();
                 }
+
             }
-            else
+            catch (Exception e)
             {
-                result.code = CheckResult.StatusCode.OK;
-                result.message = "No certificates found in " + storeName.ToString();
+                result.code = CheckResult.StatusCode.ERROR;
+                result.message = e.Message;            
             }
 
             return result;

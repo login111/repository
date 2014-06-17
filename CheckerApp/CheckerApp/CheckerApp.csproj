@@ -34,8 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,7 +50,9 @@
     <Compile Include="CheckerTask.cs" />
     <Compile Include="CheckResult.cs" />
     <Compile Include="Checks\CertificateCheck.cs" />
+    <Compile Include="Checks\CPUCheck.cs" />
     <Compile Include="Checks\DBCheck.cs" />
+    <Compile Include="Checks\RAMCheck.cs" />
     <Compile Include="EmailSender.cs" />
     <Compile Include="Checks\ICheck.cs" />
     <Compile Include="ISender.cs" />
